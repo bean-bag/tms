@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="GBK"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>kunming</display-name>
+
+	<!-- 指定Spring配置文件位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:config/spring.xml;classpath*:config/servletContext.xml;classpath*:config/serviceContext.xml;classpath*:config/daoContext.xml
+		</param-value>
+	</context-param>
+
+	<!-- Spring上下文加载监听 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<!-- 请求编码过滤 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<!-- 数据库连接会话管理 -->
+	<filter>
+		<filter-name>sessionManager</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+		<init-param>
+            <param-name>sessionFactoryBeanName</param-name>
+            <param-value>sessionFactory</param-value>
+        </init-param>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!--init-param>
+            <param-name>flushMode</param-name>
+            <param-value>AUTO</param-value>
+        </init-param-->		
+	</filter>
+	<filter-mapping>
+		<filter-name>sessionManager</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<!-- 安全验证过滤 -->
+	<filter>
+		<filter-name>SecureFilter</filter-name>
+		<filter-class>com.jungle.tms.SecureFilter</filter-class>
+		<init-param>
+			<param-name>error_page</param-name>
+			<param-value>/index.html</param-value>
+		</init-param>
+		<!-- 
+			<init-param> 
+			<param-name>free_method</param-name>
+			<param-value>verifyCode,loginSys</param-value> 
+			</init-param>
+		-->
+	</filter>
+	<filter-mapping>
+		<filter-name>SecureFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<!-- 登陆请求 -->
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/loginServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 消息请求 -->
+	<servlet>
+		<servlet-name>messageServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>messageServlet</servlet-name>
+		<url-pattern>/messageServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 上传请求 -->
+	<!--servlet>
+		<servlet-name>docServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetServletLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>doc_dir</param-name>
+			<param-value>doc</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>docServlet</servlet-name>
+		<url-pattern>/docServlet</url-pattern>
+	</servlet-mapping-->
+
+	<!-- 项目请求 -->
+	<servlet>
+		<servlet-name>prjServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>prjServlet</servlet-name>
+		<url-pattern>/prjServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 项目信息请求 -->
+	<servlet>
+		<servlet-name>prjInfoServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>prjInfoServlet</servlet-name>
+		<url-pattern>/prjInfoServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 项目组 -->
+	<servlet>
+		<servlet-name>groupServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>groupServlet</servlet-name>
+		<url-pattern>/groupServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 人员请求 -->
+	<servlet>
+		<servlet-name>personServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>personServlet</servlet-name>
+		<url-pattern>/personServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 部门请求 -->
+	<servlet>
+		<servlet-name>depServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>depServlet</servlet-name>
+		<url-pattern>/depServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 角色请求 -->
+	<servlet>
+		<servlet-name>roleServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>roleServlet</servlet-name>
+		<url-pattern>/roleServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 子项目请求 -->
+	<servlet>
+		<servlet-name>subprjServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>subprjServlet</servlet-name>
+		<url-pattern>/subprjServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 图别请求 -->
+	<servlet>
+		<servlet-name>imgtypeServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>imgtypeServlet</servlet-name>
+		<url-pattern>/imgtypeServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 图幅请求 -->
+	<servlet>
+		<servlet-name>imgsizeServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>imgsizeServlet</servlet-name>
+		<url-pattern>/imgsizeServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 子图请求 -->
+	<servlet>
+		<servlet-name>subimgServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>subimgServlet</servlet-name>
+		<url-pattern>/subimgServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 项目行样式 -->
+	<servlet>
+		<servlet-name>lineStyleServlet</servlet-name>
+		<servlet-class>
+			com.jungle.tms.web.DelegatingServletrProxy
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lineStyleServlet</servlet-name>
+		<url-pattern>/lineStyleServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 上传文件 -->
+	<servlet>
+		<display-name>uploadFileServlet</display-name>
+		<servlet-name>uploadFileServlet</servlet-name>
+		<servlet-class>com.jungle.tms.servlet.UploadFileServlet</servlet-class>
+		<init-param>
+			<description>设置是否为绝对路径。如果为相对路径，则是基于appliction的布署路径</description>
+			<param-name>absolute</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>file_dir</param-name>
+			<param-value>d:/doc</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadFileServlet</servlet-name>
+		<url-pattern>/uploadFileServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+</web-app>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.jungle.tms.model.PrjInfo" table="t_prjinfo">
+		<!--id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="identity" />
+		</id-->
+		<!--property name="prjName" type="java.lang.String" /-->
+		<id name="prjName" type="java.lang.String">
+			<column name="prjName" />
+			<generator class="assigned" />
+		</id>
+		<property name="location" type="java.lang.String" />
+		<property name="scale" type="java.lang.String" />
+		<property name="watersupply" type="java.lang.String" />
+		<property name="pipeline" type="java.lang.String" />
+		<property name="construction" type="java.lang.String" />
+		<property name="electric" type="java.lang.String" />
+		<property name="contact" type="java.lang.String" />
+		<property name="builder" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

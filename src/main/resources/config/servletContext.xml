@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<bean id="loginServlet" class="com.jungle.tms.servlet.LoginServlet">
+		<property name="service" ref="personService" />
+		<property name="lineStyleService" ref="lineStyleService" />
+	</bean>
+	<bean id="docServlet" class="com.jungle.tms.servlet.DocServlet">
+		<property name="service" ref="projectService" />		
+	</bean>
+	
+	<bean id="messageServlet" class="com.jungle.tms.servlet.MessageServlet">
+		<property name="service" ref="messageService" />		
+	</bean>
+	<bean id="personServlet" class="com.jungle.tms.servlet.PersonServlet">
+		<property name="service" ref="personService" />
+		<property name="vgroupService" ref="vgroupService" />
+	</bean>
+	
+	<bean id="groupServlet" class="com.jungle.tms.servlet.GroupServlet">
+		<property name="service" ref="groupService" />
+	</bean>
+	<bean id="prjServlet" class="com.jungle.tms.servlet.ProjectServlet">
+		<property name="service" ref="projectService" />
+		<property name="messageService" ref="messageService" />
+		<property name="groupService" ref="groupService" />
+	</bean>
+	<bean id="prjInfoServlet" class="com.jungle.tms.servlet.PrjInfoServlet">
+		<property name="service" ref="prjInfoService" />
+		<property name="projectService" ref="projectService" />
+		<property name="groupService" ref="groupService" />
+	</bean>
+	<bean id="depServlet" class="com.jungle.tms.servlet.DeptServlet">
+		<property name="service" ref="departService" />
+	</bean>	
+	<bean id="roleServlet" class="com.jungle.tms.servlet.RoleServlet">
+		<property name="service" ref="roleService" />
+	</bean>	
+	<bean id="subprjServlet" class="com.jungle.tms.servlet.SubprjServlet">
+		<property name="service" ref="subprjService" />
+	</bean>	
+	<bean id="imgtypeServlet" class="com.jungle.tms.servlet.ImgtypeServlet">
+		<property name="service" ref="imgtypeService" />
+	</bean>	
+	<bean id="imgsizeServlet" class="com.jungle.tms.servlet.ImgsizeServlet">
+		<property name="service" ref="imgsizeService" />
+	</bean>	
+	<bean id="subimgServlet" class="com.jungle.tms.servlet.SubImgServlet">
+		<property name="service" ref="subImgService" />
+		<property name="messageService" ref="messageService" />
+		<property name="spService" ref="subprjService" />
+		<property name="itService" ref="imgtypeService" />
+		<property name="isService" ref="imgsizeService" />
+	</bean>	
+	<bean id="lineStyleServlet" class="com.jungle.tms.servlet.LineStyleServlet">
+		<property name="service" ref="lineStyleService" />
+	</bean>	
+
+</beans>

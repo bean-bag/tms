@@ -1,0 +1,2 @@
+DROP VIEW IF EXISTS `v_group`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`127.0.0.1` SQL SECURITY DEFINER VIEW `v_group` AS select distinct `tg`.`memberID` AS `id`,`tg`.`prjID` AS `prjID`,`tg`.`sort` AS `sort`,`tp`.`userCode` AS `userCode`,`tp`.`userName` AS `userName`,`tp`.`teamLeader` AS `teamLeader`,`tp`.`deptID` AS `deptID` from (`t_group` `tg` join `t_person` `tp`) where ((`tg`.`memberID` = `tp`.`id`) and (`tg`.`sort` <> _gbk'MAJORDEPART') and (`tg`.`sort` <> _gbk'MINORDEPART'));

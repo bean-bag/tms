@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<bean id="personService" class="com.jungle.tms.service.impl.PersonService">
+		<property name="dao" ref="personDao" />
+	</bean>
+	<bean id="groupService" class="com.jungle.tms.service.impl.GroupService">
+		<property name="dao" ref="groupDao" />
+	</bean>
+	<bean id="vgroupService" class="com.jungle.tms.service.impl.VGroupService">
+		<property name="dao" ref="vgroupDao" />
+	</bean>
+	
+	<bean id="projectService" class="com.jungle.tms.service.impl.ProjectService">
+		<property name="dao" ref="projectDao" />
+		<!--property name="groupDao" ref="groupDao" /-->
+	</bean>
+	<bean id="messageService" class="com.jungle.tms.service.impl.MessageService">
+		<property name="dao" ref="messageDao" />
+		<property name="seqDao" ref="messageSeqDao" />
+	</bean>
+
+	<bean id="departService" class="com.jungle.tms.service.impl.DepartmentService">
+		<property name="dao" ref="departDao"/>
+	</bean>
+	<bean id="roleService" class="com.jungle.tms.service.impl.RoleService">
+		<property name="dao" ref="roleDao"/>
+	</bean>
+	<bean id="subprjService" class="com.jungle.tms.service.impl.SubprjService">
+		<property name="dao" ref="subprjDao"/>
+	</bean>
+	<bean id="imgtypeService" class="com.jungle.tms.service.impl.ImgtypeService">
+		<property name="dao" ref="imgtypeDao"/>
+	</bean>
+	<bean id="imgsizeService" class="com.jungle.tms.service.impl.ImgsizeService">
+		<property name="dao" ref="imgsizeDao"/>
+	</bean>
+	<bean id="subImgService" class="com.jungle.tms.service.impl.SubImgService">
+		<property name="dao" ref="subImgDao"/>
+	</bean>
+	<bean id="lineStyleService" class="com.jungle.tms.service.impl.LineStyleService">
+		<property name="dao" ref="lineStyleDao" />
+	</bean>
+	<bean id="prjInfoService" class="com.jungle.tms.service.impl.PrjInfoService">
+		<property name="dao" ref="prjInfoDao" />
+	</bean>
+</beans>

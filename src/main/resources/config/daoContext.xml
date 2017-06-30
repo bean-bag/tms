@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="projectDao" class="com.jungle.tms.dao.impl.ProjectDao" />
+	<bean id="personDao" class="com.jungle.tms.dao.impl.PersonDao" />
+	<bean id="departDao" class="com.jungle.tms.dao.impl.DepartmentDao" />
+	<bean id="roleDao" class="com.jungle.tms.dao.impl.RoleDao" />
+	<bean id="groupDao" class="com.jungle.tms.dao.impl.GroupDao" />
+	<bean id="vgroupDao" class="com.jungle.tms.dao.impl.VGroupDao" />
+	<bean id="subprjDao" class="com.jungle.tms.dao.impl.SubprjDao" />
+	<bean id="imgtypeDao" class="com.jungle.tms.dao.impl.ImgtypeDao" />
+	<bean id="imgsizeDao" class="com.jungle.tms.dao.impl.ImgsizeDao" />
+	<bean id="subImgDao" class="com.jungle.tms.dao.impl.SubImgDao" />
+	<bean id="messageDao" class="com.jungle.tms.dao.impl.MessageDao" />
+	<bean id="messageSeqDao" class="com.jungle.tms.dao.impl.MessageSeqDao" />
+	<bean id="lineStyleDao" class="com.jungle.tms.dao.impl.LineStyleDao" />
+	<bean id="prjInfoDao" class="com.jungle.tms.dao.impl.PrjInfoDao" />
+</beans>

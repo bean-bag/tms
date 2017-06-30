@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+</HEAD>
+
+<BODY>
+<object id="fileDialog" width="0px" height="0px" classid="clsid:F9043C85-F6F2-101A-A3C9-08002B2F49FB" codebase="http://activex.microsoft.com/controls/vb5/comdlg32.cab"></object>  
+<button onclick="openDir()">open dir</button><br> <BR>
+<button onclick="openWord()">open word</button><BR><BR>
+<button onclick="browseFolder('path')">open word</button><BR><BR>
+<button onclick="oo()">open word</button><BR><BR>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function openDir(){
+	fileDialog.CancelError=true;
+	try{
+		fileDialog.InitDir = "C:\\windows";
+		//fileDialog.Filter="*.*";//"HTM Files (*.htm)|*.htm|Text Files (*.txt)|*.txt";  
+		fileDialog.ShowOpen();  
+	}catch(e){
+		alert(e);
+	}  
+}
+function openWord(){
+	var word=new ActiveXObject("Word.Application");   
+	word.application.visible=true;   
+	word.documents.open('e:\\昆明\\开发文档.doc');
+}
+function oo(){
+try{
+	var sa= new ActiveXObject("Shell.Application");
+	sa.open("D:\java\workspace\tms\doc\开发文档.doc");
+		}
+	catch (e) {
+	alert(e.message); 
+	}
+
+}
+function browseFolder(path) {
+	try {
+	var Message = "\u8bf7\u9009\u62e9\u6587\u4ef6\u5939"; //选择框提示信息
+	var Shell = new ActiveXObject("Shell.Application"); 
+	var Folder = Shell.BrowseForFolder(0, Message, 64, 17); //起始目录为：我的电脑
+	//var Folder = Shell.BrowseForFolder(0,Message,0); //起始目录为：桌面
+	if (Folder != null) {
+	Folder = Folder.items(); // 返回 FolderItems 对象
+	Folder = Folder.item(); // 返回 Folderitem 对象
+	Folder = Folder.Path; // 返回路径
+	if (Folder.charAt(Folder.length - 1) != "") {
+	Folder = Folder + ""; 
+	}
+	document.getElementById(path).value = Folder; 
+	return Folder; 
+	}
+	}
+	catch (e) {
+	alert(e.message); 
+	}
+}
+//-->
+</SCRIPT>
+<div id="path"></div>
+</BODY>
+</HTML>

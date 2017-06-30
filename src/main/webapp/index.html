@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>任务桌面</title>
+<link rel="stylesheet" type="text/css"
+	href="ext-3.2.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/Ext.ux.grid.CellActions.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/Ext.ux.SuperBoxSelect.css" />
+<link rel="stylesheet" type="text/css" href="css/icons.css" />
+<link rel="stylesheet" type="text/css" href="css/tms.css" />
+<link rel="stylesheet" type="text/css" href="css/fileIcons.css">
+<link rel="stylesheet" type="text/css" href="css/UploadDialog.css">
+<link rel="stylesheet" type="text/css" href="css/fileuploadfield.css">
+<link rel="stylesheet" type="text/css" href="css/column-tree.css">
+
+<script type="text/javascript" src="ext-3.2.1/adapter/ext/ext-base-debug.js"></script>
+<script type="text/javascript" src="ext-3.2.1/ext-all-debug.js"></script>
+<script type="text/javascript" src="scripts/plugins/ext-basex-debug.js"></script>
+
+<script type="text/javascript"
+	src="scripts/plugins/Ext.ux.grid.RowExpander.js"></script>
+<script type="text/javascript"
+	src="scripts/plugins/Ext.ux.grid.CellActions.js"></script>
+<script type="text/javascript"
+	src="scripts/plugins/Ext.ux.grid.TextRowAction.js"></script>
+<script type="text/javascript"
+	src="scripts/plugins/Ext.ux.SuperBoxSelect.js"></script>
+<script type="text/javascript"
+	src="scripts/plugins/Ext.tree.ColumnTree.js"></script>
+<script type="text/javascript" src="scripts/FilesUploadField.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	if (Ext.DatePicker) {
+		Ext.apply(Ext.DatePicker.prototype, {
+			todayText : "今天",
+			minText : "日期在最小日期之前",
+			maxText : "日期在最大日期之后",
+			disabledDaysText : "",
+			disabledDatesText : "",
+			monthNames : [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月",
+					"9月", "10月", "11月", "12月" ],
+			dayNames : [ "日", "一", "二", "三", "四", "五", "六" ],
+			nextText : '下月 (ctrl+right)',
+			prevText : '上月 (ctrl+left)',
+			monthYearText : '选择一个月 (ctrl+up/down 来改变年)',
+			todayTip : "{0} (space)",
+			okText : "确定",
+			cancelText : "取消"
+		//,format: "y年m月d日"   
+		});
+	}
+	if (Date) {
+		Date.dayNames = [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
+
+		Date.monthNames = [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月",
+				"九月", "十月", "十一月", "十二月" ];
+		Date.monthNumbers = {
+			"一月" : 0,
+			"二月" : 1,
+			"三月" : 2,
+			"四月" : 3,
+			"五月" : 4,
+			"六月" : 5,
+			"七月" : 6,
+			"八月" : 7,
+			"九月" : 8,
+			"十月" : 9,
+			"十一月" : 10,
+			"十二月" : 11
+		};
+	}
+	Date.prototype.getElapsed = function(A) {
+		return Math.abs((A || new Date()).getTime() - this.getTime());
+	};
+
+	//Ext.form.BasicForm.waitTitle = "请稍候...";
+
+	Ext.ns('Tms');
+	Tms.URLS = {
+		loginSys : 'loginServlet?method=loginSys',
+		isLogon : 'loginServlet?method=isLogon',
+		logoutSys : 'loginServlet?method=logoutSys',
+		verifyCode : 'loginServlet?method=verifyCode',
+		taskList : 'prjServlet.do?method=projectList',
+
+		getPrjInfo : 'prjInfoServlet.do?method=getInfo',
+		updatePrjInfo : 'prjInfoServlet.do?method=update',
+
+		create4helper : 'prjServlet.do?method=create4helper',
+		update4helper : 'prjServlet.do?method=update4helper',
+		create4planner : 'prjServlet.do?method=create4planner',
+		update4planner : 'prjServlet.do?method=update4planner',
+		updatePrjState : 'prjServlet.do?method=updatePrjState',
+		updateBudgetFlag : 'prjServlet.do?method=updateBudgetFlag',
+		update4officer : 'prjServlet.do?method=update4officer',
+		update4leader : 'prjServlet.do?method=update4leader',
+		deleteTask : 'prjServlet.do?method=deleteProject',
+		//priorityList : 'prjServlet.do?method=priorityList',
+
+		lineStyle : 'lineStyleServlet.do?method=update',
+
+		budgetOfficer : 'prjServlet.do?method=budgetOfficer',
+		budgeteerAction : 'prjServlet.do?method=budgeteer',
+		assessorAction : 'prjServlet.do?method=assessor',
+		outprintAction : 'prjServlet.do?method=outprint',
+		archiveAction : 'prjServlet.do?method=archive',
+		accountAction : 'prjServlet.do?method=account',
+
+		departList : 'depServlet.do?method=departList',
+		majorDepartList : 'depServlet.do?method=majorDepartList',
+		minorDepartList : 'depServlet.do?method=minorDepartList',
+		personList : 'personServlet.do?method=personList',
+		officerList : 'personServlet.do?method=officerList',
+		personListByDept : 'personServlet.do?method=personListByDept',
+		personListByPrj : 'personServlet.do?method=personListByPrj',
+		groupList : 'groupServlet.do?method=list',
+		isMajorDepart : 'groupServlet.do?method=isMajorDepart',
+		isMajorPerson : 'groupServlet.do?method=isMajorPerson',
+		canDesign : 'groupServlet.do?method=canDesign',
+		canCheck : 'groupServlet.do?method=canCheck',
+		canBudget : 'groupServlet.do?method=canBudget',
+		canSubmitBudget : 'groupServlet.do?method=canSubmitBudget',
+		isOfficer : 'groupServlet.do?method=isOfficer',
+
+		subprjList : 'subprjServlet.do?method=subprjList',
+		subprjSubmit : 'subprjServlet.do?method=subprjSubmit',
+		subprjDelete : 'subprjServlet.do?method=subprjDelete',
+
+		imgtypeList : 'imgtypeServlet.do?method=imgtypeList',
+		imgtypeSubmit : 'imgtypeServlet.do?method=imgtypeSubmit',
+		imgtypeDelete : 'imgtypeServlet.do?method=imgtypeDelete',
+
+		imgsizeList : 'imgsizeServlet.do?method=imgsizeList',
+		imgsizeSubmit : 'imgsizeServlet.do?method=imgsizeSubmit',
+		imgsizeDelete : 'imgsizeServlet.do?method=imgsizeDelete',
+
+		create4designer : 'subimgServlet.do?method=create4designer',
+		update4designer : 'subimgServlet.do?method=update4designer',
+		correctorAction : 'subimgServlet.do?method=corrector',
+		subimgList : 'subimgServlet.do?method=subimgList',
+		allTypeList : 'subimgServlet.do?method=allTypeList',
+		//accomplishmentList : 'subimgServlet.do?method=accomplishmentList',
+		evalElapsed : 'subimgServlet.do?method=evalElapsed',
+
+		fileList : 'uploadFileServlet.do?method=fileList',
+		fileDownload : 'uploadFileServlet.do?method=download',
+		fileUpload : 'uploadFileServlet.do?method=upload',
+		fileDel : 'uploadFileServlet.do?method=delFile',
+
+		messageList : 'messageServlet.do?method=messageList',
+		messageHisList : 'messageServlet.do?method=messageHisList',
+		messageSubmit : 'messageServlet.do?method=messageSubmit',
+		messagePolling : 'messageServlet.do?method=messagePolling',
+		userOnline : 'messageServlet.do?method=userOnline'
+
+	};
+
+	Tms.projectTypes = [ '', '招投标', '规划', '可研', '初设', '施工图' ];
+	Tms.projectStateNames = [ '', '完成', '签合同', '收款', '审核', '付定金' ];
+	Tms.projectStates = [ '', '已完成', '已签合同', '已收款', '已审核', '已付定金' ];
+	Tms.projectPriority = [ [ '!!!最高级', 1 ], [ '普通级', 2 ], [ '低优先级', 3 ] ];
+	//Tms.personList = [ [ '人员一', '1' ], [ '人员二', '2' ], [ '人员三', '3' ],[ '人员四', '4' ], [ '人员五', '5' ], [ '人员六', '6' ], [ '人员七', '7' ] ];
+
+	function val2view(val, etymons, sp) {
+		sp = sp || ' | ';
+
+		var sv = '';
+
+		if (!Ext.isEmpty(val)) {
+			var ary = val.split(',');
+			var prefix = [ '' ];
+			for ( var j = 1; j < etymons.length; j++) {
+				var pfx = '未';
+				for ( var i = 0; i < ary.length; i++) {
+					if (ary[i] == j) {
+						pfx = '已';
+					}
+				}
+				prefix.push(pfx);
+			}
+			sv = prefix[1] + etymons[1];
+			for ( var i = 2; i < etymons.length; i++) {
+				sv += sp + prefix[i] + etymons[i];
+			}
+		} else {
+			sv = '未' + etymons[1];
+			for ( var i = 2; i < etymons.length; i++) {
+				sv += sp + '未' + etymons[i];
+			}
+		}
+
+		return sv;
+	}
+//-->
+</SCRIPT>
+<script type="text/javascript" src="scripts/ChatWin.js"></script>
+<script type="text/javascript" src="scripts/TmsTypes.js"></script>
+<script type="text/javascript" src="scripts/UIlib.js"></script>
+<script type="text/javascript" src="scripts/FormTemplate.js"></script>
+<script type="text/javascript" src="scripts/WinTemplate.js"></script>
+<script type="text/javascript" src="scripts/helper.js"></script>
+<script type="text/javascript" src="scripts/planner.js"></script>
+<script type="text/javascript" src="scripts/officer.js"></script>
+<script type="text/javascript" src="scripts/designer.js"></script>
+<script type="text/javascript" src="scripts/all.js"></script>
+
+<script type="text/javascript" src="scripts/MainViewer.js"></script>
+</head>
+<body>
+</body>
+</html>

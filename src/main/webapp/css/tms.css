@@ -1,0 +1,102 @@
+.x-panel-header-subTitle {
+	background-image: url('');
+	background-color: #DFE8F6;
+	background-color: #99BBE8;
+	background-color: #D2E0F2;
+	font-weight: normal;
+	font-family: 宋体;
+	font-size: 14px;
+}
+.x-tip .x-tip-body {
+    font-size: 12px;
+}
+.childDiv {
+	/*margin-left: 40px;*/
+	background-color: #FFFFF9;
+	/*background-color: #FFFF00;*/
+}
+
+.ellipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.x-grid3-hd-row TD {
+    font-size: 12px;/*改变表头字体大小*/
+    font-weight:bold;
+}
+.x-grid3-row TD {
+    font-size: 12px;/*改变行内容字体大小*/
+    line-height: 10px;
+}
+.x-form-display-field3{
+	padding-top:3px;
+}
+.ux-row-action-text {
+	color: black;
+	/*cursor: pointer; cursor: hand;
+	text-decoration: underline;	*/
+}
+.ux-row-action-greenText {
+	color: green;
+	/*cursor: pointer; cursor: hand;
+	text-decoration: underline;	*/
+}
+.ux-row-action-href {
+	color: blue;
+	cursor: pointer; cursor: hand;
+	text-decoration: underline;	
+}
+
+.line_style_red {
+	background-color: red;
+	color: black;
+}
+
+.line_style_blue {
+	background-color: blue;
+	color: black;
+}
+
+.line_style_green {
+	background-color: green;
+	color: black;
+}
+
+.line_style_orange {
+	background-color: orange;
+	color: black;
+}
+
+.line_style_yellow {
+	background-color: yellow;
+	color: black;
+}
+
+.line_style_cyan {
+	background-color: cyan;
+	color: black;
+}
+
+.line_style_purple {
+	background-color: purple;
+	color: black;
+}
+
+.line_style_gray {
+	background-color: gray;
+	color: black;
+}
+
+.line_style_pink {
+	background-color: pink;
+	color: black;
+}
+
+.rightText {
+	/*text-align:right;*/
+	/*float:right; margin-top: -8px;*/
+}
+.text-fixed-width{
+	width:60px; display: inline-block;
+}

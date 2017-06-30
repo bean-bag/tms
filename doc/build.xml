@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="MyProject" default="deploy">
+	<property name="src.dir" value="D:\java\workspace\tms-deploy\tms"/>
+	<property name="dest.dir" value="C:\Program Files\Tomcat 5.5\webapps\tms"/>
+
+	<target name="deploy">
+		<copy todir="${dest.dir}" >  
+		        <fileset dir="${src.dir}" includes="**"/>
+		 </copy>	
+	</target>	
+</project>
